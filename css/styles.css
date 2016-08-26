@@ -6,7 +6,7 @@
     margin: 0 auto;
     padding: 50px 0 50px 0;
     border-bottom: 1px ridge;
-    min-height: 400px;
+    min-height: 300px;
 }
 .row-footer {
     background-color: #AfAfAf;
@@ -47,4 +47,7 @@ body{
 }
 .navbar-inverse .navbar-nav .open .dropdown-menu> li> a:hover {
     color: #000000;
+}
+.has-feedback .form-control{
+    padding-right: 42.5px;
 }
