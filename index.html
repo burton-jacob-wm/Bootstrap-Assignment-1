@@ -9,19 +9,15 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Ristorante Con Fusion</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/mystyles.css" rel="stylesheet">
     <link href="css/bootstrap-social.css" rel="stylesheet">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
 
 </head>
 
@@ -56,7 +52,7 @@
                 <li><a href="contactus.html"><span class="fa fa-envelope"></span> Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a data-toggle="modal" data-target="#loginModal">
+                <li><a id="loginButton">
                     <span class="glyphicon glyphicon-log-in"></span> Login</a>
                 </li>
             </ul>
@@ -78,8 +74,9 @@
                 <form class="form-inline">
                     <input type="email" class="form-control" id="emailid" name="emailid" placeholder="Email">
                     <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-                    <input type="checkbox" id="remember" name="password" placeholder="Remember Me">
-                    <i>Remember Me</i>
+                    <label>
+                        <input type="checkbox" id="remember" name="password" placeholder="Remember Me"> Remember Me
+                    </label>
                     <button type="submit" class="btn btn-info">Sign In</button>
                     <p></p>
                     <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
@@ -152,14 +149,11 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-12">
-                        <div class="alert alert-warning alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <strong>Warning!</strong> Please <a href="contactus.html">call</a> us to reserve for more than six guests.
-                        </div>
-                    </div>
-                    <p style="padding: 20px;"></p>
                 </form>
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Warning!</strong> Please <a href="contactus.html">call</a> us to reserve for more than six guests.
+                </div>
             </div>
         </div>
     </div>
@@ -182,7 +176,7 @@
             </div>
             <div class="col-xs-12 col-sm-2">
                 <p style="padding: 50px;"></p>
-                <a type="button" data-toggle="modal" data-target="#reserveModal" class="btn btn-warning btn-block">Reserve Table</a>
+                <a type="button" id="reserveButton" class="btn btn-warning btn-block">Reserve Table</a>
             </div>
         </div>
     </div>
@@ -202,8 +196,7 @@
                         <img class="img-responsive"
                              src="img/uthappizza.png" alt="Uthappizza">
                         <div class="carousel-caption">
-                            <h2>Uthappizza  <span class="label label-danger">Hot
-                          </span> <span class="badge">$4.99</span></h2>
+                            <h2>Uthappizza  <span class="label label-danger">Hot</span> <span class="badge">$4.99</span></h2>
                             <p>A unique combination of Indian Uthappam (pancake) and
                                 Italian pizza, topped with Cerignola olives, ripe vine
                                 cherry tomatoes, Vidalia onion, Guntur chillies and
@@ -246,6 +239,16 @@
                            ="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
+                </div>
+                <div class="btn-group" id="carouselButtons">
+                    <button class="btn btn-danger btn-xs" id="carousel-pause">
+                     <span class="glyphicon glyphicon-pause" aria-hidden="true"
+                     ></span>
+                    </button>
+                    <button class="btn btn-danger btn-xs" id="carousel-play">
+                     <span class="glyphicon glyphicon-play" aria-hidden="true"
+                     ></span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -294,7 +297,24 @@
         </div>
     </div>
 </footer>
+<script>
+    $('#loginButton').click(function(){
+        $('#loginModal').modal('toggle')
+    });
+    $('#reserveButton').click(function(){
+        $('#reserveModal').modal('toggle')
+    });
 
+    $(document).ready(function(){
+        $("#mycarousel").carousel( { interval: 2000 } );
+        $("#carousel-pause").click(function(){
+            $("#mycarousel").carousel('pause');
+        });
+        $("#carousel-play").click(function(){
+            $("#mycarousel").carousel('cycle');
+        });
+    });
+</script>
 </body>
 
 </html>
